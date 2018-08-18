@@ -1,21 +1,47 @@
 type dateTimeFormat;
 
 [@bs.deriving abstract]
-type formatOptions = {weekday: string};
+type formatOptions = {
+  [@bs.optional]
+  weekday: string,
+  [@bs.optional]
+  day: string,
+  [@bs.optional]
+  month: string,
+};
 
 [@bs.new]
 external dateTimeFormat: (string, formatOptions) => dateTimeFormat =
   "Intl.DateTimeFormat";
 
-[@bs.send] external format: (dateTimeFormat, Js.Date.t) => string = "format";
+/* The empty string means "the JS name is the same as the name we're giving the external in BuckleScript-land"
+ */
+[@bs.send] external format: (dateTimeFormat, Js.Date.t) => string = "";
 
-let now = Js.Date.now()->Js.Date.fromFloat;
+/**
+ * TODO: Figure out how to bind this properly?
+ */
+let locale: string = [%bs.raw {| navigator.language |}];
 
-let weekdayFormatter =
-  dateTimeFormat("en-US", formatOptions(~weekday="short"));
+let shortWeekdayFormatter =
+  dateTimeFormat(locale, formatOptions(~weekday="short", ()));
 
-let weekDay = () => weekdayFormatter->format(now);
+/**
+* The graphQL thingy isn't a string :[
+ */
+let toStr = (date: Js.Json.t) =>
+  date |> Js.Json.decodeString |> Js.Option.getExn;
+/**
+ * Given a Date string, returns short day name, like Wed/Ons
+ */
+let shortWeekDay = (date: Js.Json.t) =>
+  shortWeekdayFormatter->format(Js.Date.fromString(toStr(date)));
 
-Js.log(
-  dateTimeFormat("en-US", formatOptions(~weekday="short"))->(format(now)),
-);
+let dayFormatter =
+  dateTimeFormat(
+    locale,
+    formatOptions(~day="2-digit", ~month="2-digit", ()),
+  );
+
+let day = (date: Js.Json.t) =>
+  dayFormatter->format(Js.Date.fromString(toStr(date)));

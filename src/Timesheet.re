@@ -1,6 +1,6 @@
 module Styles = {
   open Css;
-  
+
   let table = style([fontSize(rem(0.75))]);
 
   let notWorkDay = style([backgroundColor(green)]);
@@ -21,14 +21,18 @@ let make = (_children, ~timesheet) => {
             {
               timesheet##workSchedule
               |> Js.Array.map(ws =>
-                   switch (ws##workingDay, ws##publicHoliday) {
-                   | (_, true) =>
-                     <th> {ReasonReact.string("Holiday")} </th>
-                   | (true, _) =>
-                     <th> {ReasonReact.string("Working day")} </th>
-                   | (false, false) =>
-                     <th> {ReasonReact.string("regular day")} </th>
-                   }
+                   <th>
+                   <div>
+                     {
+                       ReasonReact.string(
+                         DateTimeFormat.shortWeekDay(ws##date),
+                       )
+                     }
+                     </div>
+                     <div>
+                     {ReasonReact.string(DateTimeFormat.day(ws##date))}
+                     </div>
+                   </th>
                  )
             }
           </Fragment>
