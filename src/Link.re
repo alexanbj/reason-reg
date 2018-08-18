@@ -1,9 +1,13 @@
 module Styles = {
   open Css;
 
-  /* TODO: Figure out opacity */
   let a =
-    style([color(Theme.secondaryColor), /*transition("opacity .15s ease-in"),*/ hover([opacity(0.5)])]);
+    style([
+      textDecoration(none),
+      color(Theme.secondaryColor),
+      transition(~duration=15, ~timingFunction=easeIn, "opacity"),
+      hover([opacity(0.5)]),
+    ]);
 };
 
 let component = ReasonReact.statelessComponent("Link");
