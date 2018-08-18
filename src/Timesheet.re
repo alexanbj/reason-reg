@@ -1,7 +1,8 @@
 module Styles = {
   open Css;
 
-  let table = style([fontSize(rem(0.75))]);
+  /* ffs... Why wont it lt me use with in a typesafe way.. */
+  let table = style([fontSize(rem(0.75)), unsafe("width", "100%")]);
 
   let notWorkDay = style([backgroundColor(green)]);
 };
@@ -22,15 +23,15 @@ let make = (_children, ~timesheet) => {
               timesheet##workSchedule
               |> Js.Array.map(ws =>
                    <th>
-                   <div>
-                     {
-                       ReasonReact.string(
-                         DateTimeFormat.shortWeekDay(ws##date),
-                       )
-                     }
+                     <div>
+                       {
+                         ReasonReact.string(
+                           DateTimeFormat.shortWeekDay(ws##date),
+                         )
+                       }
                      </div>
                      <div>
-                     {ReasonReact.string(DateTimeFormat.day(ws##date))}
+                       {ReasonReact.string(DateTimeFormat.day(ws##date))}
                      </div>
                    </th>
                  )
