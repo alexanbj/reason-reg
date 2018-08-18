@@ -33,9 +33,9 @@ let make = _children => {
       <main>
         {
           switch (self.state.route) {
-          | Home => <TimesheetContainer />
+          | Home => <TimesheetPage />
           | SignedOut => <SignedOut />
-          | NotFound => <TimesheetContainer />
+          | NotFound => <NotFound />
           }
         }
       </main>

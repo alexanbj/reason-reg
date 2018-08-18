@@ -2,12 +2,12 @@ module Styles = {
   open Css;
 
   /* ffs... Why wont it lt me use with in a typesafe way.. */
-  let table = style([fontSize(rem(0.75)), unsafe("width", "100%")]);
+  let table = style([fontSize(rem(0.75)), unsafe("border-collapse", "collapse"), unsafe("width", "100%")]);
 
   let notWorkDay = style([backgroundColor(green)]);
 };
 
-let component = ReasonReact.statelessComponent("Timesheet");
+let component = ReasonReact.statelessComponent("TimesheetTable");
 
 let make = (_children, ~timesheet) => {
   ...component,

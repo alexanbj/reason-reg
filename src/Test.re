@@ -3,6 +3,7 @@ module GetVacationDays = [%graphql
   query getVacationDays {
       balance {
           vacation
+          flex
       }
   }
 |}
@@ -28,6 +29,12 @@ let make = _children => {
                    ReasonReact.string(
                      "Feriedager: "
                      ++ string_of_int(response##balance##vacation),
+                   )
+                 }
+                 {
+                   ReasonReact.string(
+                     "Flex: "
+                     ++ string_of_float(response##balance##flex),
                    )
                  }
                </div>

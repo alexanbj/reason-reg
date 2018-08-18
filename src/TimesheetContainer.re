@@ -34,7 +34,6 @@ let component = ReasonReact.statelessComponent("Rows");
 let make = _children => {
   ...component,
   render: _self =>
-    <Container>
       <GetTimesheetQuery>
         ...{
              ({result}) =>
@@ -43,9 +42,8 @@ let make = _children => {
                | Error(error) =>
                  <div> {ReasonReact.string(error##message)} </div>
                | Data(response) =>
-                 <Timesheet timesheet=response##currentSheet />
+                 <TimesheetTable timesheet=response##currentSheet />
                }
            }
       </GetTimesheetQuery>
-    </Container>,
 };
