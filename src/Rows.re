@@ -13,7 +13,7 @@ let make = (_children, ~timesheet) => {
     |> Js.Array.map(detail =>
          <tr key=detail##id className=Styles.detailsRow>
            <td> {ReasonReact.string(detail##workOrder##description)} </td>
-           <td> {ReasonReact.string(detail##description)} </td>
+           <td> <InputCell defaultValue=detail##description /> </td>
            <td> {ReasonReact.string(string_of_float(detail##sum))} </td>
           <Fragment>
             {

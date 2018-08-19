@@ -34,16 +34,19 @@ let component = ReasonReact.statelessComponent("Rows");
 let make = _children => {
   ...component,
   render: _self =>
-      <GetTimesheetQuery>
-        ...{
-             ({result}) =>
-               switch (result) {
-               | Loading => <ActivityIndicator />
-               | Error(error) =>
-                 <div> {ReasonReact.string(error##message)} </div>
-               | Data(response) =>
+    <GetTimesheetQuery>
+      ...{
+           ({result}) =>
+             switch (result) {
+             | Loading => <ActivityIndicator />
+             | Error(error) =>
+               <div> {ReasonReact.string(error##message)} </div>
+             | Data(response) =>
+               <Fragment>
                  <TimesheetTable timesheet=response##currentSheet />
-               }
-           }
-      </GetTimesheetQuery>
+                 <Button> {ReasonReact.string("Lagre")} </Button>
+               </Fragment>
+             }
+         }
+    </GetTimesheetQuery>,
 };
