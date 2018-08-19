@@ -3984,7 +3984,7 @@ reason-apollo@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/reason-apollo/-/reason-apollo-0.12.0.tgz#573ad3515d87c06108e9733d59808422cfa4931e"
 
-reason-react@>=0.4.0:
+reason-react@0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.5.3.tgz#10601809742fd991109ec9d69ad4baf2c3f17540"
   dependencies:

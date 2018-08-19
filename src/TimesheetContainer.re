@@ -42,10 +42,10 @@ let make = _children => {
              | Error(error) =>
                <div> {ReasonReact.string(error##message)} </div>
              | Data(response) =>
-               <Fragment>
+               <>
                  <TimesheetTable timesheet=response##currentSheet />
                  <Button> {ReasonReact.string("Lagre")} </Button>
-               </Fragment>
+               </>
              }
          }
     </GetTimesheetQuery>,

@@ -28,7 +28,7 @@ let make = _children => {
   reducer,
   initialState: () => {route: Home},
   render: self =>
-    <Fragment>
+    <>
       <Header />
       <main>
         {
@@ -40,5 +40,5 @@ let make = _children => {
         }
       </main>
       <Footer />
-    </Fragment>,
+    </>,
 };
