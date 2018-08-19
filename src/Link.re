@@ -12,7 +12,7 @@ module Styles = {
 
 let component = ReasonReact.statelessComponent("Link");
 
-let make = (children, ~onClick) => {
+let make = (~onClick, children) => {
   ...component,
   render: _self => <a className=Styles.a onClick> ...children </a>,
 };
