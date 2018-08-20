@@ -1,8 +1,4 @@
-/* Our different routes */
-type route =
-  | Home
-  | SignedOut
-  | NotFound;
+open Route;
 
 type state = {route};
 
@@ -14,19 +10,14 @@ let reducer = (action, _state) =>
   | ChangeRoute(route) => ReasonReact.Update({route: route})
   };
 
-let mapUrlToRoute = (url: ReasonReact.Router.url) =>
-  switch (url.path) {
-  | [] => Home
-  | ["signed-out"] => SignedOut
-  | _ => NotFound
-  };
-
 let component = ReasonReact.reducerComponent("App");
 
 let make = _children => {
   ...component,
   reducer,
-  initialState: () => {route: Home},
+  initialState: () => {
+    route: ReasonReact.Router.dangerouslyGetInitialUrl()->Route.urlToRoute,
+  },
   render: self =>
     <>
       <Header />
@@ -35,6 +26,7 @@ let make = _children => {
           switch (self.state.route) {
           | Home => <TimesheetPage />
           | SignedOut => <SignedOut />
+          | Auth => <Auth />
           | NotFound => <NotFound />
           }
         }
