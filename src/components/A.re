@@ -10,9 +10,9 @@ module Styles = {
     ]);
 };
 
-let component = ReasonReact.statelessComponent("Link");
+let component = ReasonReact.statelessComponent("A");
 
-let make = (~onClick, children) => {
+let make = (~onClick=?, ~href="", children) => {
   ...component,
-  render: _self => <a className=Styles.a onClick> ...children </a>,
+  render: _self => <a className=Styles.a href ?onClick> ...children </a>,
 };

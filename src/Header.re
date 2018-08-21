@@ -10,7 +10,7 @@ module Styles = {
       marginRight(rem(0.5)),
       borderLeftWidth(px(1)),
       borderLeftStyle(solid),
-      borderColor(Theme.shadedColor)
+      borderColor(Theme.shadedColor),
     ]);
 
   let rightAlign = style([display(flexBox), justifyContent(flexEnd)]);
@@ -26,7 +26,9 @@ let make = _children => {
         <div className=Styles.rightAlign>
           <DisplayUserName />
           <span className=Styles.divider />
-          <Link onClick={_event => Effects.removeTokenFromStorage()}>
+          <Link
+            route=Route.SignedOut
+            onClick={_event => Effects.removeTokenFromStorage()}>
             {ReasonReact.string("Logg ut")}
           </Link>
         </div>

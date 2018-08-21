@@ -15,13 +15,13 @@ let make = _children => {
         <p>
           <small>
             {ReasonReact.string("Powered by ")}
-            <a href="https://reasonml.github.io/">
+            <A href="https://reasonml.github.io/">
               {ReasonReact.string("Reason")}
-            </a>
+            </A>
             {ReasonReact.string(" & ")}
-            <a href="https://graphql.org/">
+            <A href="https://graphql.org/">
               {ReasonReact.string("GraphQL.")}
-            </a>
+            </A>
           </small>
         </p>
         <p> <small> {ReasonReact.string("Made by alb.")} </small> </p>
