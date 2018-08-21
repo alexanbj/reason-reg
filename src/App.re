@@ -1,13 +1,24 @@
 open Route;
 
-type state = {route};
+type authenticationStatus =
+  | Authenticated
+  | Unauthenticated;
+
+type state = {
+  route,
+  authenticationStatus,
+};
 
 type action =
   | ChangeRoute(route);
 
-let reducer = (action, _state) =>
+let reducer = (action, state) =>
   switch (action) {
-  | ChangeRoute(route) => ReasonReact.Update({route: route})
+  | ChangeRoute(route) =>
+    ReasonReact.Update({
+      route,
+      authenticationStatus: state.authenticationStatus,
+    })
   };
 
 let component = ReasonReact.reducerComponent("App");
@@ -25,10 +36,15 @@ let make = _children => {
   },
   initialState: () => {
     route: ReasonReact.Router.dangerouslyGetInitialUrl()->Route.urlToRoute,
+    authenticationStatus:
+      switch (Effects.getTokenFromStorage()) {
+      | Some(_) => Authenticated
+      | _ => Unauthenticated
+      },
   },
   render: self =>
     <>
-      <Header />
+      <Header authenticationStatus={self.state.authenticationStatus} />
       <main>
         {
           switch (self.state.route) {

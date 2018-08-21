@@ -18,15 +18,26 @@ module Styles = {
 
 let component = ReasonReact.statelessComponent("Header");
 
-let make = _children => {
+let make = (~authenticationStatus, _children) => {
   ...component,
   render: _self =>
     <header className=Styles.header>
       <Container>
         <div className=Styles.rightAlign>
-          <DisplayUserName />
-          <span className=Styles.divider />
-          <Link route=Route.SignedOut> {ReasonReact.string("Logg ut")} </Link>
+          {
+            switch (authenticationStatus) {
+            | App.Authenticated =>
+              <>
+                <DisplayUserName />
+                <span className=Styles.divider />
+                <Link route=Route.SignedOut>
+                  {ReasonReact.string("Logg ut")}
+                </Link>
+              </>
+            | App.Unauthenticated =>
+              <Link route=Route.Auth> {ReasonReact.string("Logg inn")} </Link>
+            }
+          }
         </div>
       </Container>
     </header>,
