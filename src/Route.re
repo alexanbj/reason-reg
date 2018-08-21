@@ -19,5 +19,6 @@ let urlToRoute = (url: ReasonReact.Router.url) =>
   switch (url.path) {
   | [] => Home
   | ["auth"] => Auth
+  | ["signed-out"] => SignedOut
   | _ => NotFound
   };
