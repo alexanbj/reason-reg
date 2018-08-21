@@ -15,6 +15,14 @@ let component = ReasonReact.reducerComponent("App");
 let make = _children => {
   ...component,
   reducer,
+  didMount: self => {
+    let watcherID =
+      ReasonReact.Router.watchUrl(url =>
+        self.send(ChangeRoute(url |> Route.urlToRoute))
+      );
+
+    self.onUnmount(() => ReasonReact.Router.unwatchUrl(watcherID));
+  },
   initialState: () => {
     route: ReasonReact.Router.dangerouslyGetInitialUrl()->Route.urlToRoute,
   },

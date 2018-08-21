@@ -15,6 +15,7 @@ let component = ReasonReact.statelessComponent("SignedOut");
 
 let make = _children => {
   ...component,
+  didMount: _self => Effects.removeTokenFromStorage(),
   render: _self =>
     <Container>
       <h1 className=Styles.h1> {ReasonReact.string("See ya later")} </h1>

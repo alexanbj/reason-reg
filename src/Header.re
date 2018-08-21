@@ -26,11 +26,7 @@ let make = _children => {
         <div className=Styles.rightAlign>
           <DisplayUserName />
           <span className=Styles.divider />
-          <Link
-            route=Route.SignedOut
-            onClick={_event => Effects.removeTokenFromStorage()}>
-            {ReasonReact.string("Logg ut")}
-          </Link>
+          <Link route=Route.SignedOut> {ReasonReact.string("Logg ut")} </Link>
         </div>
       </Container>
     </header>,
