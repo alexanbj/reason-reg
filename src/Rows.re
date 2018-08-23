@@ -6,7 +6,7 @@ module Styles = {
 
 let component = ReasonReact.statelessComponent("Rows");
 
-let make = (_children, ~timesheet) => {
+let make = (~timesheet, _children) => {
   ...component,
   render: _self =>
     timesheet##details
@@ -15,16 +15,14 @@ let make = (_children, ~timesheet) => {
            <td> {ReasonReact.string(detail##workOrder##description)} </td>
            <td> <InputCell defaultValue=detail##description /> </td>
            <td> {ReasonReact.string(string_of_float(detail##sum))} </td>
-          <Fragment>
-            {
-              detail##values
-              |> Js.Array.map(value =>
-                   <td>
-                     {ReasonReact.string(string_of_float(value))}
-                   </td>
-                 )
-            }
-          </Fragment>
+           <Fragment>
+             {
+               detail##values
+               |> Js.Array.map(value =>
+                    <td> {ReasonReact.string(string_of_float(value))} </td>
+                  )
+             }
+           </Fragment>
          </tr>
        )
     |> ReasonReact.array,
