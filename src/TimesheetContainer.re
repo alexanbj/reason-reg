@@ -1,35 +1,6 @@
-module GetTimesheet = [%graphql
-  {|
-  query getTimesheet {
-      currentSheet {
-        workSchedule {
-          normalHours
-          date
-          publicHoliday
-          workingDay
-        }
-        details {
-            id
-            project {
-              id
-              description
-            }
-            workOrder {
-              id
-              description
-            }
-            description
-            values
-            sum
-        }
-      }
-  }
-|}
-];
+open GetTimesheet;
 
-module GetTimesheetQuery = ReasonApollo.CreateQuery(GetTimesheet);
-
-let component = ReasonReact.statelessComponent("Rows");
+let component = ReasonReact.statelessComponent("TimesheetContainer");
 
 let make = _children => {
   ...component,

@@ -12,10 +12,20 @@ module Styles = {
   let notWorkDay = style([backgroundColor(green)]);
 };
 
-let component = ReasonReact.statelessComponent("TimesheetTable");
+type state = {timesheet: GetTimesheet.GetTimesheetGql.t};
+type detail;
+type action =
+  | UpdateDetail(detail);
+
+let component = ReasonReact.reducerComponent("TimesheetTable");
+
+let reducer = (action: action, state) =>
+  ReasonReact.Update({timesheet: state.timesheet});
 
 let make = (~timesheet, _children) => {
   ...component,
+  reducer,
+  initialState: () => timesheet,
   render: _self =>
     <table className=Styles.table>
       <thead>
