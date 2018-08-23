@@ -2,6 +2,7 @@
 .merlin
 .bsb.lock
 npm-debug.log
+.graphql_ppx_cache
 /lib/bs/
 /node_modules/
 *.bs.js
