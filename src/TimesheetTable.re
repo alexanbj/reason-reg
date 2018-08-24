@@ -23,7 +23,7 @@ let make = (~timesheet, _children) => {
           <th> {ReasonReact.string("Arbeidsoppgave")} </th>
           <th> {ReasonReact.string("Beskrivelse")} </th>
           <th> {ReasonReact.string("Sum")} </th>
-          <Fragment>
+          <>
             {
               timesheet##workSchedule
               |> Js.Array.map(ws =>
@@ -40,14 +40,15 @@ let make = (~timesheet, _children) => {
                      </div>
                    </th>
                  )
+              |> ReasonReact.array
             }
-          </Fragment>
+          </>
         </tr>
         <tr>
           <th />
           <th scope="row"> {ReasonReact.string("Normaltid")} </th>
           <th />
-          <Fragment>
+          <>
             {
               timesheet##workSchedule
               |> Js.Array.map(ws =>
@@ -55,8 +56,9 @@ let make = (~timesheet, _children) => {
                      {ReasonReact.string(string_of_float(ws##normalHours))}
                    </th>
                  )
+              |> ReasonReact.array
             }
-          </Fragment>
+          </>
         </tr>
       </thead>
       <tbody> <Rows timesheet /> </tbody>

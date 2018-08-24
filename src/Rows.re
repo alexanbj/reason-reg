@@ -15,14 +15,15 @@ let make = (~timesheet, _children) => {
            <td> {ReasonReact.string(detail##workOrder##description)} </td>
            <td> <InputCell defaultValue=detail##description /> </td>
            <td> {ReasonReact.string(string_of_float(detail##sum))} </td>
-           <Fragment>
+           <>
              {
                detail##values
                |> Js.Array.map(value =>
                     <td> {ReasonReact.string(string_of_float(value))} </td>
                   )
+               |> ReasonReact.array
              }
-           </Fragment>
+           </>
          </tr>
        )
     |> ReasonReact.array,
