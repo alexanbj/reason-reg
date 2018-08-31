@@ -6,7 +6,7 @@ module Styles = {
     style([
       fontSize(rem(0.75)),
       unsafe("border-collapse", "collapse"),
-      unsafe("width", "100%"),
+      width(pct(100.)),
     ]);
 
   let notWorkDay = style([backgroundColor(green)]);

@@ -4,11 +4,7 @@ module Styles = {
   let h1 = style([textAlign(center)]);
 
   let img =
-    style([
-      display(block),
-      margin2(px(30), auto),
-      unsafe("width", "50%"),
-    ]);
+    style([display(block), margin2(px(30), auto), width(pct(50.))]);
 };
 
 let component = ReasonReact.statelessComponent("NotFound");

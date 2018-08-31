@@ -6,7 +6,7 @@ module Styles = {
       background(transparent),
       borderStyle(none),
       color(Theme.textColor),
-      unsafe("width", "100%"),
+      width(pct(100.)),
     ]);
 };
 
